@@ -1,4 +1,5 @@
 # gesture-recognition
+Dataset used: Microsoft Kinect and Leap Motion Dataset, https://lttm.dei.unipd.it/downloads/gesture/#kinect_leap <br>
 
 Approach 1, results, branch *first-step-fix*:
 
