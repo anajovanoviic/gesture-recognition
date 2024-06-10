@@ -45,3 +45,7 @@ Epoch 19/20
 Epoch 20/20
 7/7 ━━━━━━━━━━━━━━━━━━━━ 6s 801ms/step - accuracy: 0.8125 - loss: 0.3762 - val_accuracy: 0.8571 - val_loss: 0.3385
 ```
+
+Graph:
+
+![Figure 2024-06-10 first-step-fix](https://github.com/anajovanoviic/gesture-recognition/assets/51513732/5dab3a27-9f22-4f26-beca-0452900e0dd9)
