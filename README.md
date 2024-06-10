@@ -1,6 +1,6 @@
 # gesture-recognition
 
-Approach 1, results, branch first-step-fix:
+Approach 1, results, branch *first-step-fix*:
 
 ```
 In [92]: history = model.fit(X_train, Y_train, epochs=20, validation_data=(X_test, Y_test))
