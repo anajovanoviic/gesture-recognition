@@ -153,4 +153,4 @@ Epoch 20/20
 0.8928571343421936
 ```
 
-![alt text](<Figure 2024-07-07 140206 real-time-images.png>)
+![gesture-recognition/approach-1/Figure2024-07-07-143029.png](gesture-recognition/approach-1/Figure2024-07-07-143029.png)
