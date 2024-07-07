@@ -199,3 +199,5 @@ Epoch 19/20
 Epoch 20/20
 7/7 ━━━━━━━━━━━━━━━━━━━━ 5s 776ms/step - accuracy: 0.9041 - loss: 0.1676 - val_accuracy: 0.9464 - val_loss: 0.1941
 ```
+
+gesture-recognition/approach-1/Figure-2024-07-07-144707.png
