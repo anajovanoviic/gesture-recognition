@@ -1,17 +1,18 @@
-import os, cv2, re, array
-
+import os, cv2, re
 import numpy 
+import numpy as np
+import sys
+import process_frame
+import matplotlib.pyplot as plt
+
 from PIL import Image
 from sklearn.utils import shuffle
-import matplotlib.backend_bases
-import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
-from sklearn import preprocessing
-from model import create_model
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense
 from tensorflow.keras.utils import to_categorical
-import numpy as np
+from save_model import save_model
+from model import create_model
+
+sys.path.append('C:/Users/anadjj/programs_ana/master/gesture-recognition/gesture-recognition/approach-1')
 
 path1 = r'C:\Users\anadjj\programs_ana\master\gesture-recognition\gesture-recognition\approach-1\dataset'
 
@@ -43,6 +44,10 @@ array_image1 = numpy.array(image1)
 print(array_image1.shape)
 a, b = array_image1.shape[0:2]
 
+#image2 = Image.open(path2 + '\\' + final_output[1])
+
+#array_image2 = numpy.array(image2)
+
 #num of processed images
 num_processed_images = len(processed_images)
 
@@ -54,10 +59,18 @@ label = numpy.ones((num_processed_images,),dtype = int)
 label[0:141]=0
 label[141:]=1
 
+#shuffles arrays in a synchronized manner
 data,Label = shuffle(matrix, label, random_state=2)
 train_data = [data,Label]
 
+seventh_img = matrix[167]
+print(matrix[167].shape)
+
+#reshaping of the flatten image(array) to the original dim in order to visualize it
 img = matrix[167].reshape(480,640)
+print(img.shape)
+
+
 plt.imshow(img)
 plt.imshow(img, cmap='gray')
 
@@ -66,8 +79,10 @@ print(train_data[1].shape)
 
 # Literature used for the labelling part is from video from Anuj shah - https://www.youtube.com/watch?v=2pQOXjpO_u0
 
+'''
 img2 = train_data[0]
 img3 = img2[0]
+
 
 test = img3.reshape(480,640)
 plt.imshow(test)
@@ -75,6 +90,7 @@ plt.imshow(test)
 print("")
 print("train_data[0]")
 print(train_data[0])
+'''
 
 (X, y) = (train_data[0], train_data[1])
 
@@ -82,6 +98,8 @@ X_train, X_test, y_train, y_test = train_test_split(train_data[0], train_data[1]
 
 img_rows = 480
 img_cols = 640
+
+#Why do we reshape?
 X_train = X_train.reshape(X_train.shape[0], 1, img_rows, img_cols)
 X_test = X_test.reshape(X_test.shape[0], 1, img_rows, img_cols)
 
@@ -100,8 +118,8 @@ X_test = X_test.reshape(X_test.shape[0], 1, img_rows, img_cols)
 #normalized_train_X = normalizer.fit_transform(X_train)
 
 #2
-x_train_norm = X_train / 255.0
-x_test_norm = X_test / 255.0
+#x_train_norm = X_train / 255.0
+#x_test_norm = X_test / 255.0
 
 X_train = X_train / 255.0
 X_test = X_test / 255.0
@@ -117,9 +135,17 @@ Y_train = to_categorical(y_train, num_classes)
 Y_test = to_categorical(y_test, num_classes)
 
 
-i = 100
-plt.imshow(X_train[i, 0], interpolation='nearest')
+i = 1
+random_image = X_train[i, 0]
+plt.imshow(random_image, interpolation='nearest')
 print("label : ", Y_train[i,:])
+
+
+for i in range(0, 55, 1):
+    plt.figure()  
+    plt.imshow(X_test[i, 0], interpolation='nearest')
+    #print("label : ", Y_train[i,:])
+    
 
 
 #model creation
@@ -150,6 +176,10 @@ plt.legend(loc='lower right')
 
 test_loss, test_acc = model.evaluate(X_test, Y_test, verbose=2)
 print(test_acc)
+#print("%s: %.2f%%" % (model.metrics_names[1]), )
+
+#save model
+save_model(model)
 
 #Prediction on the test data
 predicted_classes = model.predict(X_test)
@@ -157,10 +187,24 @@ predicted_classes = np.argmax(np.round(predicted_classes),axis=1)
 
 i = 10
 plt.imshow(X_test[i, 0], interpolation='nearest')
+pred = predicted_classes[i]
+plt.suptitle(f'Real label: {Y_test[i,:]}')
+plt.title(f"predicted label: {pred}")
 print("label : ", Y_test[i,:])
 print("predicted label : ", predicted_classes[i])
+
+for i in range(0, 55, 1):
+    plt.figure()  
+    plt.imshow(X_test[i, 0], interpolation='nearest')
+    pred = predicted_classes[i]
+    plt.suptitle(f'Real label: {Y_test[i,:]}')
+    plt.title(f"predicted label: {pred}")
 
 # https://stackoverflow.com/questions/68776790/model-predict-classes-is-deprecated-what-to-use-instead
 # below code doesn't work
 # print(model.predict_classes(X_test[1:5]))
 # print(Y_test[1:5])
+
+predicted_classes_real = model.predict(process_frame.x_testreal)
+predicted_classes_real = np.argmax(np.round(predicted_classes_real),axis=1)
+print(predicted_classes_real[0])
