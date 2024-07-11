@@ -4,6 +4,7 @@ import numpy as np
 import sys
 import process_frame
 import matplotlib.pyplot as plt
+import array as arr
 
 from PIL import Image
 from sklearn.utils import shuffle
@@ -11,6 +12,7 @@ from sklearn.model_selection import train_test_split
 from tensorflow.keras.utils import to_categorical
 from save_model import save_model
 from model import create_model
+from numpy import save
 
 sys.path.append('C:/Users/anadjj/programs_ana/master/gesture-recognition/gesture-recognition/approach-1')
 
@@ -177,9 +179,14 @@ plt.legend(loc='lower right')
 test_loss, test_acc = model.evaluate(X_test, Y_test, verbose=2)
 print(test_acc)
 #print("%s: %.2f%%" % (model.metrics_names[1]), )
+print(X_test)
+a = arr.array('i', [1, 2, 3])
+save('array.npy', a)
+save('x_test.npy', X_test)
+save('y_test.npy', Y_test)
 
 #save model
-save_model(model)
+#save_model(model)
 
 #Prediction on the test data
 predicted_classes = model.predict(X_test)
@@ -193,7 +200,7 @@ plt.title(f"predicted label: {pred}")
 print("label : ", Y_test[i,:])
 print("predicted label : ", predicted_classes[i])
 
-for i in range(0, 55, 1):
+for i in range(0, 5, 1):
     plt.figure()  
     plt.imshow(X_test[i, 0], interpolation='nearest')
     pred = predicted_classes[i]
