@@ -158,6 +158,8 @@ Epoch 20/20
 
 ### Треће покретање model.fit() у истој конзоли, ништа није мењано:
 
+- saved in model.h5 (1965e79)
+
 ```
 Epoch 1/20
 7/7 ━━━━━━━━━━━━━━━━━━━━ 5s 689ms/step - accuracy: 0.9468 - loss: 0.1507 - val_accuracy: 0.8929 - val_loss: 0.2569
