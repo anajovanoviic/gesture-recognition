@@ -96,7 +96,7 @@ print(train_data[0])
 
 (X, y) = (train_data[0], train_data[1])
 
-X_train, X_test, y_train, y_test = train_test_split(train_data[0], train_data[1], test_size=0.2, shuffle=False)
+X_train, X_test, y_train, y_test = train_test_split(train_data[0], train_data[1], test_size=0.2, random_state=4)
 
 img_rows = 480
 img_cols = 640
@@ -162,11 +162,9 @@ model = create_model(height, width, depth, num_classes)
 
 model.summary()
 
-model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
 
 history = model.fit(X_train, Y_train, epochs=20, validation_data=(X_test, Y_test))
 
-#history = model.fit(x_train_norm.reshape(-1, 480, 640, 1), y_train.reshape((-1, 1)), epochs=10, validation_data=(x_test_norm, y_test))
 
 plt.plot(history.history['accuracy'], label='accuracy')
 plt.plot(history.history['val_accuracy'], label = 'val_accuracy')
@@ -186,7 +184,7 @@ save('x_test.npy', X_test)
 save('y_test.npy', Y_test)
 
 #save model
-#save_model(model)
+save_model(model)
 
 #Prediction on the test data
 predicted_classes = model.predict(X_test)
