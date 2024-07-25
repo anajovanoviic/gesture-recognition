@@ -22,11 +22,18 @@ def create_model(height, width, depth, num_classes):
     model.add(Conv2D(32, (7, 7), input_shape=(depth, height, width), padding='same', activation='relu'))
     model.add(MaxPooling2D(pool_size=(2,2), padding='same'))
     model.add(MaxPooling2D(pool_size=(2,2), padding='same'))
+    
+    # Layer 4
     model.add(Conv2D(64, (3, 3), padding='same', activation='relu'))
+    #Layer 5
     model.add(MaxPooling2D(pool_size=(2,2), padding='same'))
+    #Layer 6
     model.add(Conv2D(64, (3, 3), padding='same', activation='relu'))
+    #Layer 7
     model.add(Flatten())
+    #Layer 8
     model.add(Dense(64, activation='relu'))
+    #Layer 9
     model.add(Dense(num_classes, activation='softmax'))
     
     model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
@@ -47,8 +54,8 @@ def build_model(hp):
     model.add(keras.layers.Conv2D(
         filters=hp.Int('conv1_filters_num', min_value=32, max_value=128, step=16),
         kernel_size=hp.Choice('conv1_filter_size', values = [3,5]),
-        #input_shape=(depth, height, width),
-        input_shape=(height, width, depth),
+        input_shape=(depth, height, width), # channel first
+        #input_shape=(height, width, depth), # channel last
         activation='relu'))
     
     model.add(keras.layers.MaxPooling2D(
@@ -59,25 +66,28 @@ def build_model(hp):
     # Should I decrease or increase number of filters in the next conv layer?
     # Based on the known architectures number of filters is increased
     
+    # Layer 4
     model.add(keras.layers.Conv2D(
         filters=hp.Int('conv2_filters_num', min_value=64, max_value=128, step=16),
         kernel_size=hp.Choice('conv2_filter_size', values = [3,5]),
         activation='relu'))
-    
+    # Layer 5
     model.add(MaxPooling2D(pool_size=(2,2)))
-    
+    #Layer 6
     model.add(keras.layers.Conv2D(
         filters=hp.Int('conv3_filters_num', min_value=32, max_value=128, step=16),
         kernel_size=hp.Choice('conv3_filter_size', values = [3,5]),
         activation='relu'))
-    
+    # Layer 7
     model.add(keras.layers.Flatten())
     
+    # Layer 8
     # How many units should I have in the Dense layer?
     model.add(keras.layers.Dense(
         units=hp.Int('dense1_units_num', min_value=32, max_value=128, step=16),
         activation='relu'))
     
+    # Layer 9
     model.add(Dense(num_classes, activation='softmax'))
     
     learning_rate = hp.Float('lr', min_value=1e-4, max_value=1e-2, sampling='log')

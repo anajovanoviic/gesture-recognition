@@ -16,9 +16,9 @@ from numpy import save
 
 sys.path.append('C:/Users/anadjj/programs_ana/master/gesture-recognition/gesture-recognition/approach-1')
 
-path1 = r'C:\Users\anadjj\programs_ana\master\gesture-recognition\gesture-recognition\approach-1\dataset'
+path1 = r'C:\Users\anadjj\programs_ana\master\stari-radovi\gesture-recognition\approach-1\dataset'
 
-path2 = r'C:\Users\anadjj\programs_ana\master\gesture-recognition\gesture-recognition\approach-1\processed_dataset'
+path2 = r'C:\Users\anadjj\programs_ana\master\stari-radovi\gesture-recognition\approach-1\processed_dataset'
 
 files = os.listdir(path1)
 nums = sorted( int((re.search(r'\d+(\d{1,2})?', num)).group()) for num in files)
