@@ -1,3 +1,9 @@
+''' WARNING:
+parameter value passed to the
+label = numpy.ones((num_processed_images-1,),dtype = int) 
+is changed compared to the inital value in C:\Users\anadjj\programs_ana\master\gesture-recognition\approach-1\search.py
+'''
+
 import os, cv2, re
 import numpy 
 import sys
@@ -16,9 +22,11 @@ from model import tuner
 
 sys.path.append('C:/Users/anadjj/programs_ana/master/gesture-recognition/gesture-recognition/approach-1')
 
-path1 = r'C:\Users\anadjj\programs_ana\master\stari-radovi\gesture-recognition\approach-1\dataset'
+#path1 = r'C:\Users\anadjj\programs_ana\master\stari-radovi\gesture-recognition\approach-1\dataset'
+path1 = r'/content/drive/MyDrive/master-thesis/dataset'
 
-path2 = r'C:\Users\anadjj\programs_ana\master\stari-radovi\gesture-recognition\approach-1\processed_dataset'
+#path2 = r'C:\Users\anadjj\programs_ana\master\stari-radovi\gesture-recognition\approach-1\processed_dataset'
+path2 = r'/content/gesture-recognition/approach-1/processed_dataset'
 
 files = os.listdir(path1)
 nums = sorted( int((re.search(r'\d+(\d{1,2})?', num)).group()) for num in files)
@@ -36,7 +44,7 @@ processed_images = os.listdir(path2)
 
 #image1 = array.array('i', [Image.open(path2 + '\\' + final_output[0])])
 
-image1 = Image.open(path2 + '\\' + final_output[0])
+image1 = Image.open(path2 + '/' + final_output[0])
 
 print(image1.format)
 print(image1.size)
@@ -53,14 +61,20 @@ a, b = array_image1.shape[0:2]
 #num of processed images
 num_processed_images = len(processed_images)
 
-matrix = numpy.array([numpy.array(Image.open(path2 + '\\' + image)).flatten() for image in final_output],'f')
+matrix = numpy.array([numpy.array(Image.open(path2 + '/' + image)).flatten() for image in final_output],'f')
 
 #LABELLING
 
-label = numpy.ones((num_processed_images,),dtype = int)
+label = numpy.ones((num_processed_images-1,),dtype = int)
 label[0:141]=0
 label[141:]=1
 
+print("label")
+print(label.shape)
+print(label)
+
+print(matrix.shape)
+print(matrix)
 #shuffles arrays in a synchronized manner
 data,Label = shuffle(matrix, label, random_state=2)
 train_data = [data,Label]
