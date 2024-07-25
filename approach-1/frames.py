@@ -24,9 +24,9 @@ while True:
         # OpenCV uses BGR color space
         retval, image = cam.read() 
         image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-        img = cv2.imwrite(r"C:\Users\anadjj\programs_ana\master\стари-радови\gesture-recognition\live-stream"+str(i)+".png", image)
-        #prediction = predict_gesture(img)
-        prediction = i+1
+        img = cv2.imwrite(r"C:\Users\anadjj\programs_ana\master\stari-radovi\gesture-recognition\live-stream"+str(i)+".png", image)
+        prediction = predict_gesture(img)
+        #prediction = i+1 #testing
         i += 1
         delta = 0  
         

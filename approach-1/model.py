@@ -25,15 +25,15 @@ def create_model(height, width, depth, num_classes):
     
     # Layer 4
     model.add(Conv2D(64, (3, 3), padding='same', activation='relu'))
-    #Layer 5
+    # Layer 5
     model.add(MaxPooling2D(pool_size=(2,2), padding='same'))
-    #Layer 6
+    # Layer 6
     model.add(Conv2D(64, (3, 3), padding='same', activation='relu'))
-    #Layer 7
+    # Layer 7
     model.add(Flatten())
-    #Layer 8
+    # Layer 8
     model.add(Dense(64, activation='relu'))
-    #Layer 9
+    # Layer 9
     model.add(Dense(num_classes, activation='softmax'))
     
     model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
@@ -73,7 +73,7 @@ def build_model(hp):
         activation='relu'))
     # Layer 5
     model.add(MaxPooling2D(pool_size=(2,2)))
-    #Layer 6
+    # Layer 6
     model.add(keras.layers.Conv2D(
         filters=hp.Int('conv3_filters_num', min_value=32, max_value=128, step=16),
         kernel_size=hp.Choice('conv3_filter_size', values = [3,5]),
@@ -96,7 +96,6 @@ def build_model(hp):
         optimizer=keras.optimizers.Adam(learning_rate=learning_rate),
         loss='categorical_crossentropy',
         metrics=["accuracy"],
-    
     )
               
     return model
