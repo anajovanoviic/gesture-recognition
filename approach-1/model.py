@@ -53,31 +53,39 @@ def build_model(hp):
     
     model.add(keras.layers.Conv2D(
         filters=hp.Int('conv1_filters_num', min_value=32, max_value=128, step=16),
-        kernel_size=hp.Choice('conv1_filter_size', values = [3,5]),
-        input_shape=(depth, height, width), # channel first
-        #input_shape=(height, width, depth), # channel last
+        kernel_size=hp.Choice('conv1_filter_size', values = [3,7]),
+        #input_shape=(depth, height, width), # channel first
+        input_shape=(height, width, depth), # channel last
+        padding='same',
         activation='relu'))
     
     model.add(keras.layers.MaxPooling2D(
-        pool_size=(2,2))) #should I put different values for pool_size to tune it or no?
+        pool_size=(2,2),
+        padding='same')) #should I put different values for pool_size to tune it or no?
     model.add(keras.layers.MaxPooling2D(
-        pool_size=(2,2)))
+        pool_size=(2,2),
+        padding='same'))
     
     # Should I decrease or increase number of filters in the next conv layer?
-    # Based on the known architectures number of filters is increased
+    # Based on the known architectures, number of filters is increased
     
     # Layer 4
     model.add(keras.layers.Conv2D(
         filters=hp.Int('conv2_filters_num', min_value=64, max_value=128, step=16),
         kernel_size=hp.Choice('conv2_filter_size', values = [3,5]),
+        padding='same',
         activation='relu'))
+    
     # Layer 5
-    model.add(MaxPooling2D(pool_size=(2,2)))
+    model.add(MaxPooling2D(pool_size=(2,2), padding='same'))
+    
     # Layer 6
     model.add(keras.layers.Conv2D(
         filters=hp.Int('conv3_filters_num', min_value=32, max_value=128, step=16),
         kernel_size=hp.Choice('conv3_filter_size', values = [3,5]),
+        padding='same',
         activation='relu'))
+    
     # Layer 7
     model.add(keras.layers.Flatten())
     
@@ -93,7 +101,8 @@ def build_model(hp):
     learning_rate = hp.Float('lr', min_value=1e-4, max_value=1e-2, sampling='log')
     
     model.compile(
-        optimizer=keras.optimizers.Adam(learning_rate=learning_rate),
+        #optimizer=keras.optimizers.Adam(learning_rate=learning_rate),
+        optimizer='adam',
         loss='categorical_crossentropy',
         metrics=["accuracy"],
     )
