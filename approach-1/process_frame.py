@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 
 # comparing image1 from main.py and frame
 
-path = r'C:/Users/anadjj/programs_ana/master/gesture-recognition/gesture-recognition/live-stream/image0.png'
+path = r"C:\Users\anadjj\programs_ana\master\стари-радови\gesture-recognition\live-stream\image0.png"
 
 frame = Image.open(path)
 print("testing")

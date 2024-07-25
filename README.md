@@ -1,7 +1,8 @@
 # gesture-recognition
 Dataset used: Microsoft Kinect and Leap Motion Dataset, https://lttm.dei.unipd.it/downloads/gesture/#kinect_leap <br>
 
-Approach 1, results, branch *first-step-fix*:
+## Results 1
+Approach 1, branch *first-step-fix*, see [PR #7](https://github.com/anajovanoviic/gesture-recognition/pull/7/files#diff-b335630551682c19a781afebcf4d07bf978fb1f8ac04c6bf87428ed5106870f5):
 
 ```
 In [92]: history = model.fit(X_train, Y_train, epochs=20, validation_data=(X_test, Y_test))
@@ -52,11 +53,10 @@ Graph:
 ![Figure 2024-06-10 first-step-fix](https://github.com/anajovanoviic/gesture-recognition/assets/51513732/5dab3a27-9f22-4f26-beca-0452900e0dd9)
 
 
-## Update July 7, 2024
+## Results 2 - July 7, 2024
 
-
-Након што сам покренула тренирање добила сам другачије и лошије резултате иако у коду нисам ништа мењала. Код са којим сам добила лошије резултате - 
-1965e79 (branch: real-time-images)
+Trial 1:<br>
+After I run *fit* function, I got worse results, although in the code ([1965e79](https://github.com/anajovanoviic/gesture-recognition/blob/1965e799b8b69de8a57b776416e44e55fec70903/gesture-recognition/approach-1/main.py), branch: real-time-images) I didn't change anything that affects the fit function. 
 ```
 Epoch 1/20
 7/7 ━━━━━━━━━━━━━━━━━━━━ 8s 789ms/step - accuracy: 0.4134 - loss: 0.8141 - val_accuracy: 0.5179 - val_loss: 0.7053
@@ -104,8 +104,7 @@ Epoch 20/20
 
 ![alt text](<Figure 2024-07-07 140206 real-time-images.png>)
 
-### Друго покретање model.fit() у истој конзоли, ништа није мењано:
-
+### Second run of the model.fit() in the same console as trial 1:
 ```
 Epoch 1/20
 7/7 ━━━━━━━━━━━━━━━━━━━━ 5s 692ms/step - accuracy: 0.6436 - loss: 0.6422 - val_accuracy: 0.5357 - val_loss: 0.6545
@@ -156,9 +155,9 @@ Epoch 20/20
 
 ![approach-1/Figure2024-07-07-143029.png](approach-1/Figure2024-07-07-143029.png)
 
-### Треће покретање model.fit() у истој конзоли, ништа није мењано:
+### Third run of the model.fit() in the same console as trial 1:
 
-- saved in model.h5 (1965e79)
+- saved in the model.h5 [1965e79](https://github.com/anajovanoviic/gesture-recognition/blob/1965e799b8b69de8a57b776416e44e55fec70903/gesture-recognition/approach-1/main.py)
 
 ```
 Epoch 1/20

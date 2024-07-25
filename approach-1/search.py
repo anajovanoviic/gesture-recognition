@@ -1,8 +1,6 @@
 import os, cv2, re
 import numpy 
-#import numpy as np
 import sys
-import process_frame
 import matplotlib.pyplot as plt
 import array as arr
 
@@ -18,9 +16,9 @@ from model import tuner
 
 sys.path.append('C:/Users/anadjj/programs_ana/master/gesture-recognition/gesture-recognition/approach-1')
 
-path1 = r'C:\Users\anadjj\programs_ana\master\gesture-recognition\gesture-recognition\approach-1\dataset'
+path1 = r'C:\Users\anadjj\programs_ana\master\stari-radovi\gesture-recognition\approach-1\dataset'
 
-path2 = r'C:\Users\anadjj\programs_ana\master\gesture-recognition\gesture-recognition\approach-1\processed_dataset'
+path2 = r'C:\Users\anadjj\programs_ana\master\stari-radovi\gesture-recognition\approach-1\processed_dataset'
 
 files = os.listdir(path1)
 nums = sorted( int((re.search(r'\d+(\d{1,2})?', num)).group()) for num in files)
@@ -102,7 +100,8 @@ img_rows = 480
 img_cols = 640
 
 
-X_train = X_train.reshape(X_train.shape[0], img_rows, img_cols, 1) # channel_last
+#X_train = X_train.reshape(X_train.shape[0], img_rows, img_cols, 1) # channel_last
+X_train = X_train.reshape(X_train.shape[0], 1, img_rows, img_cols) # channel_first
 X_train = X_train / 255.0
 
 num_classes = 2   
