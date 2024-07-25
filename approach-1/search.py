@@ -100,8 +100,8 @@ img_rows = 480
 img_cols = 640
 
 
-#X_train = X_train.reshape(X_train.shape[0], img_rows, img_cols, 1) # channel_last
-X_train = X_train.reshape(X_train.shape[0], 1, img_rows, img_cols) # channel_first
+X_train = X_train.reshape(X_train.shape[0], img_rows, img_cols, 1) # channel_last
+#X_train = X_train.reshape(X_train.shape[0], 1, img_rows, img_cols) # channel_first
 X_train = X_train / 255.0
 
 num_classes = 2   
