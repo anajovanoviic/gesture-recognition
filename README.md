@@ -56,7 +56,7 @@ Graph:
 ## Results 2 - July 7, 2024
 
 Trial 1:<br>
-After I run *fit* function, I got worse results, although in the code ([1965e79](https://github.com/anajovanoviic/gesture-recognition/blob/1965e799b8b69de8a57b776416e44e55fec70903/gesture-recognition/approach-1/main.py), branch: real-time-images) I didn't change anything that affects the fit function. 
+After I run *fit* function, I got worse results, although in the code ([1965e79](https://github.com/anajovanoviic/gesture-recognition/blob/1965e799b8b69de8a57b776416e44e55fec70903/gesture-recognition/conv_net/main.py), branch: real-time-images) I didn't change anything that affects the fit function. 
 ```
 Epoch 1/20
 7/7 ━━━━━━━━━━━━━━━━━━━━ 8s 789ms/step - accuracy: 0.4134 - loss: 0.8141 - val_accuracy: 0.5179 - val_loss: 0.7053
@@ -153,7 +153,7 @@ Epoch 20/20
 0.8928571343421936
 ```
 
-![approach-1/Figure2024-07-07-143029.png](approach-1/Figure2024-07-07-143029.png)
+![conv_net/Figure2024-07-07-143029.png](conv_net/Figure2024-07-07-143029.png)
 
 ### Third run of the model.fit() in the same console as trial 1:
 
@@ -206,7 +206,7 @@ Epoch 20/20
 0.9464285969734192
 ```
 
-![approach-1/Figure-2024-07-07-144707.png](approach-1/Figure-2024-07-07-144707.png)
+![conv_net/Figure-2024-07-07-144707.png](conv_net/Figure-2024-07-07-144707.png)
 
 ```
 Model: "sequential_1"
