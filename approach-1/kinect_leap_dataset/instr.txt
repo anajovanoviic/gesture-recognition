@@ -1,1 +1,0 @@
-Content of the folder is on the link: Microsoft Kinect and Leap Motion Dataset, https://lttm.dei.unipd.it/downloads/gesture/#kinect_leap
