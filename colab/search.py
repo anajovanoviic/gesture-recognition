@@ -1,7 +1,7 @@
 ''' WARNING:
 parameter value passed to the
 label = numpy.ones((num_processed_images-1,),dtype = int) 
-is changed compared to the inital value in C:\Users\anadjj\programs_ana\master\gesture-recognition\approach-1\search.py
+is changed compared to the inital value in C:\Users\anadjj\programs_ana\master\gesture-recognition\conv_net\search.py
 '''
 
 import os, cv2, re
@@ -20,7 +20,7 @@ from numpy import save
 
 from model import tuner
 
-sys.path.append('C:/Users/anadjj/programs_ana/master/gesture-recognition/gesture-recognition/approach-1')
+sys.path.append('C:/Users/anadjj/programs_ana/master/gesture-recognition/gesture-recognition/conv_net')
 
 #path1 = r'C:\Users\anadjj\programs_ana\master\stari-radovi\gesture-recognition\approach-1\dataset'
 path1 = r'/content/drive/MyDrive/master-thesis/dataset'
