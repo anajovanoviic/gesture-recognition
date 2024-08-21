@@ -102,7 +102,7 @@ Epoch 20/20
 0.5357142686843872
 ```
 
-![alt text](<Figure 2024-07-07 140206 real-time-images.png>)
+![alt text](<images/Figure-2024-07-07-140206-real-time-images.png>)
 
 ### Second run of the model.fit() in the same console as trial 1:
 ```
