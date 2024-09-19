@@ -50,23 +50,34 @@ with mp_hands.Hands(
           #for landmark in hand_landmarks:
           #  print(landmark[0])
           hand_dict = {}
-          for i in range(20):
+          for i in range(21):
             array1 = []
+            dict = {}
+  
+            
             point = hand_landmarks.landmark[i]
             print(hand_landmarks.landmark[i])
             print(point.x)
-            array1.append(point.x)
-            array1.append(point.y)
-            array1.append(point.z)
             
-            print(array1)
+            #dict['key'] = [point.x, point.y, point.z]
+            #dict['key'].append(point.x)
+            #dict.setdefault(i, []) == [point.x, point.y, point.z]
+            dict.setdefault(i, []).append(point.x)
+            dict.setdefault(i, []).append(point.y)
+            dict.setdefault(i, []).append(point.z)
+            
+            
+           # dict[i].append(point.y)
+            #dict[i].append(point.z)
+            
+            print(dict)
             #save('points/array1.npy', array1)
             #path = os.path.join('points', 'array1.npy')
             #modified_path = path.replace("\\","/")
             #save(os.path.join('points', 'array1.npy'), array1)
             
-            joined_path = posixpath.join("C:/Users/anadjj/programs_ana/master/gesture-recognition/mediapipe/points", "array1.npy")
-            save(joined_path, array1)
+            joined_path = posixpath.join("C:/Users/anadjj/programs_ana/master_thesis_final/gesture-recognition/mediapipe/points", f"array{i+1}.npy")
+            save(joined_path, dict[i])
             
     # Flip the image horizontally for a selfie-view display.
     cv2.imshow('MediaPipe Hands', cv2.flip(image, 1))
